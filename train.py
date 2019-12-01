@@ -63,8 +63,8 @@ def main():
 
         is_best = prec1 < best_prec1
         best_prec1 = min(prec1, best_prec1)
-        print(' * best MAE {mae:.3f} '
-              .format(mae=best_prec1))
+        print((' * best MAE {mae:.3f} '
+              .format(mae=best_prec1)))
         save_checkpoint({
             'state_dict': model.state_dict(),
         }, is_best)
@@ -87,7 +87,7 @@ def train(train_list, model, criterion, optimizer, epoch):
                        batch_size=args.batch_size,
                        num_workers=args.workers),
         batch_size=args.batch_size)
-    print('epoch %d, processed %d samples, lr %.10f' % (epoch, epoch * len(train_loader.dataset), args.lr))
+    print(('epoch %d, processed %d samples, lr %.10f' % (epoch, epoch * len(train_loader.dataset), args.lr)))
 
     model.train()
     end = time.time()
@@ -113,13 +113,13 @@ def train(train_list, model, criterion, optimizer, epoch):
         end = time.time()
 
         if i % args.print_freq == 0:
-            print('Epoch: [{0}][{1}/{2}]\t'
+            print(('Epoch: [{0}][{1}/{2}]\t'
                   'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                   'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
                   'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
                   .format(
                    epoch, i, len(train_loader), batch_time=batch_time,
-                   data_time=data_time, loss=losses))
+                   data_time=data_time, loss=losses)))
 
 def validate(val_list, model, criterion):
     print ('begin val')
@@ -154,8 +154,8 @@ def validate(val_list, model, criterion):
         mae += abs(pred_sum-target.sum())
 
     mae = mae/len(val_loader)
-    print(' * MAE {mae:.3f} '
-              .format(mae=mae))
+    print((' * MAE {mae:.3f} '
+              .format(mae=mae)))
 
     return mae
 
